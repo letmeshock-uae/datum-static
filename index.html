@@ -869,6 +869,11 @@
     <!-- Global Border Glow Effect Script -->
     <script
         type="module">const d = document.getElementById("dotsCanvas"), s = d.getContext("2d"); let h = d.width = window.innerWidth, u = d.height = window.innerHeight; const f = 40, B = 200, y = []; for (let e = 0; e < h; e += f)for (let o = 0; o < u; o += f)y.push({ x: e, y: o, ox: e, oy: o }); let n = { x: -9999, y: -9999 }; function b(e, o) { const m = document.getElementById("hero"), w = document.getElementById("who-we-are"), l = document.getElementById("contact"), t = document.querySelector("footer"), a = [m, w, l, t].filter(Boolean); for (const i of a) { const c = i.getBoundingClientRect(); if (o >= c.top && o <= c.bottom) return !0 } return !1 } document.addEventListener("mousemove", e => { b(e.clientX, e.clientY) ? (n.x = e.clientX, n.y = e.clientY) : (n.x = -9999, n.y = -9999) }); document.addEventListener("mouseleave", () => { n.x = -9999, n.y = -9999 }); function p() { if (!s) return; s.clearRect(0, 0, h, u); const e = document.getElementById("hero"), o = document.getElementById("who-we-are"), m = document.getElementById("contact"), w = document.querySelector("footer"), l = [];[e, o, m, w].forEach(t => { t && l.push(t.getBoundingClientRect()) }); for (const t of y) { let a = !1; for (const r of l) if (t.oy >= r.top && t.oy <= r.bottom) { a = !0; break } if (!a) continue; const i = n.x - t.x, c = n.y - t.y, g = Math.sqrt(i * i + c * c), x = Math.min(g / B, 1); if (g < B) { const r = (1 - x) * .8, E = Math.atan2(c, i); t.x -= Math.cos(E) * r, t.y -= Math.sin(E) * r } else t.x += (t.ox - t.x) * .05, t.y += (t.oy - t.y) * .05; const I = .05 + (1 - x) * .8; s.fillStyle = `rgba(255,255,255,${I})`, s.beginPath(), s.arc(t.x, t.y, .8, 0, Math.PI * 2), s.fill() } requestAnimationFrame(p) } p(); window.addEventListener("resize", () => { h = d.width = window.innerWidth, u = d.height = window.innerHeight, y.length = 0; for (let e = 0; e < h; e += f)for (let o = 0; o < u; o += f)y.push({ x: e, y: o, ox: e, oy: o }) });</script>
+    <!-- Vercel Speed Insights -->
+    <script>
+        window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
 </body>
 
 </html>
