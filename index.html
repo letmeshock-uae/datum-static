@@ -24,7 +24,8 @@
 
 <body class="bg-[#101619]"> <!-- Hover Dots Effect Canvas --> <canvas id="dotsCanvas"
         class="fixed top-0 left-0 w-screen h-screen pointer-events-none z-[1]"></canvas>
-    <nav class="fixed top-0 left-0 right-0 z-[200] bg-[#101619]/80 backdrop-blur-md">
+    <nav class="fixed top-0 left-0 right-0 z-[200] backdrop-blur-md"
+        style="background-color: rgba(16, 22, 25, 0.01); z-index: 9999;">
         <div class="flex items-stretch w-full"> <!-- Left Border Strip -->
             <div
                 class="w-[25px] flex-shrink-0 border-r border-b border-[rgba(255,255,255,0.1)] max-[768px]:w-4 max-[480px]:w-3">
@@ -637,32 +638,287 @@
             </div>
         </section>
         <div class="w-full border-t border-[#2F424B]"></div>
+
+        <style>
+            .st-title {
+                font-size: 40px;
+                line-height: 1.2;
+            }
+
+            .st-p {
+                font-size: 24px;
+                line-height: 1.3;
+            }
+
+            @media (max-width: 1024px) {
+                .st-title {
+                    font-size: 24px !important;
+                    line-height: 1.2 !important;
+                }
+
+                .st-p {
+                    font-size: 16px !important;
+                    line-height: 1.5 !important;
+                }
+
+                .st-grid {
+                    flex-direction: column !important;
+                }
+
+                .st-border {
+                    display: none !important;
+                }
+
+                #storytelling-left {
+                    display: contents !important;
+                }
+
+                .st-label {
+                    order: 1;
+                    padding: 32px 24px 0 !important;
+                    width: 100%;
+                }
+
+                .st-logo {
+                    order: 2;
+                    padding: 0 24px !important;
+                    width: 100%;
+                }
+
+                .st-top-text {
+                    order: 3;
+                    padding: 0 24px !important;
+                    margin-top: 24px !important;
+                    margin-bottom: 0 !important;
+                    width: 100%;
+                }
+
+                #cards-display {
+                    order: 4;
+                    height: 250vh !important;
+                    width: 100% !important;
+                    flex: none !important;
+                }
+
+                .st-images {
+                    order: 5;
+                    padding: 12px 24px 0 !important;
+                    flex-direction: row !important;
+                    width: 100% !important;
+                }
+
+                .st-images img {
+                    height: auto !important;
+                    width: 100% !important;
+                    min-width: 0 !important;
+                }
+
+                .st-images img:nth-child(1) {
+                    flex: 1 1 0%;
+                }
+
+                .st-images img:nth-child(2) {
+                    flex: 1.418 1 0%;
+                }
+
+                .st-bottom-text {
+                    order: 6;
+                    padding: 0 24px 24px !important;
+                    margin-top: 16px !important;
+                    width: 100%;
+                }
+
+                .st-btn-wrap {
+                    margin-bottom: 24px !important;
+                }
+            }
+        </style>
+        <!-- 05 Storytelling Section -->
+        <div id="storytelling-scroll" style="position:relative; background-color:#2F424B;">
+            <!-- Two-column layout: left scrolls naturally, right is sticky -->
+            <div class="st-grid" style="display:flex; align-items:flex-start; width:100%;">
+                <!-- Left border -->
+                <div class="st-border" style="width:25px; flex-shrink:0;"></div>
+                <!-- Left column: scrolls naturally with the page -->
+                <div id="storytelling-left"
+                    style="flex:1; min-width:0; display:flex; flex-direction:column; gap:12px; padding:32px 40px 32px 24px;">
+                    <!-- Section label -->
+                    <div class="st-label" style="display:flex; align-items:center; gap:8px;">
+                        <span
+                            style="font-family:var(--font-family-space-mono); font-size:14px; color:#EAFF01; text-transform:uppercase; letter-spacing:0.1em;">05</span>
+                        <span
+                            style="font-family:var(--font-family-space-mono); font-size:14px; color:#698CA0; text-transform:uppercase; letter-spacing:0.1em;">Storytelling</span>
+                    </div>
+                    <!-- Méridien Logo -->
+                    <div class="st-logo" style="margin-top:24px;">
+                        <img src="/images/meridian-logo.svg" alt="Méridien" style="height:84px; width:auto;">
+                    </div>
+                    <!-- Top text block -->
+                    <div class="st-top-text"
+                        style="display:flex; flex-direction:column; gap:8px; margin-top:48px; margin-bottom:120px;">
+                        <p class="st-title" style="margin:0; color:#FFFFFF; font-weight:400; letter-spacing:-0.02em;">
+                            Discover articles, interviews, and experiments exploring how technology reshapes
+                            narrative and perception. We turn research into prototypes — from Gaussian splats to
+                            interactive data stories.
+                        </p>
+                        <p class="st-p" style="margin:16px 0 0 0; color:#8FA9B8; font-weight:300;">
+                            Méridien explores cities, places, and cultural landmarks around the globe. Travelling
+                            across meridians and parallels, we search for breakthroughs in engineering,
+                            architecture, culture, and technology, always asking: how is this possible, why is it
+                            happening, and what does it mean?
+                        </p>
+                        <p class="st-p" style="margin:16px 0 0 0; color:#8FA9B8; font-weight:300;">
+                            We explore immersive media formats and experiment with new ways of presenting data and
+                            stories. Méridien is the laboratory for storytelling, where we research, prototype, and
+                            reimagine how history, culture, and cities can be experienced. From Gaussian splatting to
+                            interactive maps, we test emerging tools to push narrative boundaries.
+                        </p>
+                    </div>
+                    <!-- Two images -->
+                    <div class="st-images" style="display:flex; gap:12px; align-items:flex-start;">
+                        <img src="/images/preview-01.jpg" alt="Méridien story image 1"
+                            style="height:256px; aspect-ratio:1/1; border-radius:12px; object-fit:cover; display:block;">
+                        <img src="/images/preview-02.jpg" alt="Méridien story image 2"
+                            style="height:256px; aspect-ratio:363/256; border-radius:12px; object-fit:cover; display:block;">
+                    </div>
+                    <!-- Bottom text + button -->
+                    <div class="st-bottom-text" style="display:flex; flex-direction:column; gap:12px;">
+                        <p class="st-title" style="margin:0; color:#FFFFFF; font-weight:400; letter-spacing:-0.02em;">
+                            Our goal is simple: <span style="color:#EAFF01;">to reinvent how you see cities,
+                                history, and culture.</span>
+                        </p>
+                        <p class="st-p" style="margin:0; color:#8FA9B8; font-weight:300;">
+                            The result is slow, thoughtful, and visually rich journalism. We merge digital reality
+                            and data analysis to reveal the world — past and present — with depth and accuracy.
+                            Méridien is for people who are curious about the world and eager to explore it in new
+                            ways.
+                        </p>
+                        <!-- Visit website button -->
+                        <div class="st-btn-wrap" style="margin-top:16px; margin-bottom:48px;">
+                            <a href="https://mrdn.world/" target="_blank" rel="noopener noreferrer"
+                                style="display:inline-flex; align-items:center; gap:40px; padding:12px 16px; background:transparent; border:1px solid rgba(255,255,255,0.1); font-family:var(--font-family-space-mono); font-size:14px; text-transform:uppercase; letter-spacing:0.1em; text-decoration:none; border-radius:4px; transition:opacity 0.2s;">
+                                <span style="color:#EAFF01;">visit website</span>
+                                <span style="color:#F5F8F9;">&#8599;</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Right column: sticky card display area -->
+                <div id="cards-display" style="flex:1; min-width:0; position:relative; align-self:stretch;">
+                    <div
+                        style="width:100%; height:100vh; position:sticky; top:0; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+                        <!-- Caption text above cards -->
+                        <div id="card-caption-wrap"
+                            style="position:absolute; bottom:calc(50% + 246px); left:50%; transform:translateX(-50%); width:371px; z-index:10; pointer-events:none;">
+                            <p id="card-caption"
+                                style="margin:0; color:#8FA9B8; font-family:var(--font-family-struve,'Struve',serif); font-size:17px; line-height:1.5; letter-spacing:0em; text-align:left; opacity:1; transition:opacity 0.25s ease;">
+                                Follow the epic journey of <span style="color:#FFFFFF">Ramesses&nbsp;II</span>, whose
+                                colossal statue stands at the <span style="color:#FFFFFF">Grand Egyptian Museum in
+                                    Giza</span>.
+                            </p>
+                        </div>
+                        <!-- Card 1 -->
+                        <a href="https://mrdn.world/ramesses-the-great/" target="_blank" class="story-card"
+                            data-index="0"
+                            style="position:absolute; bottom:calc(50% - 230px); left:50%; transform:translateX(-50%); width:371px; height:460px; border-radius:16px; overflow:hidden; background:#001602; pointer-events:auto; will-change:transform; z-index:1; cursor:pointer;">
+                            <img src="/images/card-01.jpg" alt="Chapter 01"
+                                style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+                            <div style="position:absolute; inset:0; padding:24px;">
+                                <div
+                                    style="display:flex; align-items:center; justify-content:space-between; width:100%;">
+                                    <span
+                                        style="font-family:var(--font-family-space-mono); color:#698CA0; font-size:14px; text-transform:uppercase; letter-spacing:0.1em; line-height:1;">CHAPTER
+                                        01</span>
+                                    <div
+                                        style="width:24px; height:24px; border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0; background:rgba(249,249,249,0.1);">
+                                        <span style="color:#F5F8F9; font-size:13px; line-height:1;">↗</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <img src="/images/text-01.svg" alt=""
+                                style="position:absolute; bottom:32px; left:50%; transform:translateX(-50%); width:280px; height:120px; object-fit:contain;">
+                        </a>
+                        <!-- Card 2 -->
+                        <a href="https://mrdn.world/who-owns-ancient-egypt/" target="_blank" class="story-card"
+                            data-index="1"
+                            style="position:absolute; bottom:calc(50% - 230px); left:50%; transform:translateX(-50%) translateY(110vh); width:371px; height:460px; border-radius:16px; overflow:hidden; background:#001602; pointer-events:auto; will-change:transform; opacity:0; z-index:2; cursor:pointer;">
+                            <img src="/images/card-02.jpg" alt="Chapter 02"
+                                style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+                            <div style="position:absolute; inset:0; padding:24px;">
+                                <div
+                                    style="display:flex; align-items:center; justify-content:space-between; width:100%;">
+                                    <span
+                                        style="font-family:var(--font-family-space-mono); color:#698CA0; font-size:14px; text-transform:uppercase; letter-spacing:0.1em; line-height:1;">CHAPTER
+                                        02</span>
+                                    <div
+                                        style="width:24px; height:24px; border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0; background:rgba(249,249,249,0.1);">
+                                        <span style="color:#F5F8F9; font-size:13px; line-height:1;">↗</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <img src="/images/text-02.svg" alt=""
+                                style="position:absolute; bottom:32px; left:50%; transform:translateX(-50%); width:280px; height:120px; object-fit:contain;">
+                        </a>
+                        <!-- Card 3 -->
+                        <div class="story-card" data-index="2"
+                            style="position:absolute; bottom:calc(50% - 230px); left:50%; transform:translateX(-50%) translateY(110vh); width:371px; height:460px; border-radius:16px; overflow:hidden; background:#001602; pointer-events:auto; will-change:transform; opacity:0; z-index:3;">
+                            <img src="/images/card-03.jpg" alt="Chapter 03"
+                                style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+                            <div style="position:absolute; inset:0; padding:24px;">
+                                <div
+                                    style="display:flex; align-items:center; justify-content:space-between; width:100%;">
+                                    <span
+                                        style="font-family:var(--font-family-space-mono); color:#698CA0; font-size:14px; text-transform:uppercase; letter-spacing:0.1em; line-height:1;">CHAPTER
+                                        03</span>
+                                    <div
+                                        style="padding:4px 8px; border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0; background:rgba(249,249,249,0.1);">
+                                        <span
+                                            style="font-family:var(--font-family-space-mono); color:#F5F8F9; font-size:12px; line-height:1; letter-spacing:0.05em;">SOON</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <img src="/images/text-03.svg" alt=""
+                                style="position:absolute; bottom:32px; left:50%; transform:translateX(-50%); width:280px; height:120px; object-fit:contain;">
+                        </div>
+                    </div>
+                </div>
+                <!-- Right border -->
+                <div class="st-border" style="width:25px; flex-shrink:0;"></div>
+            </div>
+        </div>
+        <div class="w-full border-t border-[#2F424B]"></div>
+
         <section class="bg-[#101619]">
             <div class="flex items-stretch w-full"> <!-- Left Border Only -->
-                <div class="w-[25px] flex-shrink-0 border-r border-[#2F424B] max-[768px]:w-4 max-[480px]:w-3"></div>
+                <div class="w-[25px] flex-shrink-0 border-r border-[#2F424B] max-[768px]:w-4 max-[480px]:w-3">
+                </div>
                 <!-- Content -->
                 <div
                     class="flex-1 flex items-center justify-center h-[400px] px-24 max-[1024px]:h-auto max-[1024px]:p-16 max-[768px]:p-10 max-[480px]:p-6 max-[480px]:min-h-[400px]">
                     <h2 id="quote-text"
                         class="text-white text-[40px] leading-[1.2] text-center max-w-4xl mx-auto font-normal tracking-tight max-[768px]:text-[32px] max-[480px]:text-[16px]">
-                        <span class="block split-line">We build products that we use ourselves,</span> <span
-                            class="block split-line">so <span class="text-brand-yellow">we truly understand the
-                                problems</span></span> <span class="block split-line">and how to solve them.</span>
+                        <span class="block split-line">We build products that we use ourselves,</span>
+                        <span class="block split-line">so <span class="text-brand-yellow">we truly
+                                understand the
+                                problems</span></span> <span class="block split-line">and how to solve
+                            them.</span>
                     </h2>
                 </div> <!-- Right Border Only -->
-                <div class="w-[25px] flex-shrink-0 border-l border-[#2F424B] max-[768px]:w-4 max-[480px]:w-3"></div>
+                <div class="w-[25px] flex-shrink-0 border-l border-[#2F424B] max-[768px]:w-4 max-[480px]:w-3">
+                </div>
             </div>
         </section>
         <div class="w-full border-t border-[#2F424B]"></div>
         <section id="why-datum" class="bg-[#101619]">
             <div class="flex items-stretch w-full"> <!-- Left Border Only -->
-                <div class="w-[25px] flex-shrink-0 border-r border-[#2F424B] max-[768px]:w-4 max-[480px]:w-3"></div>
+                <div class="w-[25px] flex-shrink-0 border-r border-[#2F424B] max-[768px]:w-4 max-[480px]:w-3">
+                </div>
                 <!-- Content -->
                 <div class="flex-1 flex flex-col"> <!-- Header Section with Padding -->
                     <div class="pl-6 py-6 pb-8 max-[480px]:pl-4 max-[480px]:py-4 max-[480px]:pb-6">
                         <!-- Section Header with Number -->
                         <div class="flex items-center gap-2 mb-6"> <span
-                                class="text-nav-link text-brand-yellow">05</span> <span
+                                class="text-nav-link text-brand-yellow">06</span> <span
                                 class="text-nav-link text-[#506D7E]">our expertise</span> </div>
                         <h2
                             class="text-white font-normal text-[52px] leading-[1.2] tracking-[-0.04em] max-[1024px]:text-[40px] max-[768px]:text-[32px] max-[480px]:text-[24px]">
@@ -672,53 +928,68 @@
                     <div class="grid grid-cols-2 max-[768px]:grid-cols-1"> <!-- Card 1 -->
                         <div data-card-hover
                             class="border border-[#2F424B] -ml-[1px] -mt-[1px] h-[400px] p-6 flex flex-col gap-4 transition-colors max-[480px]:p-4">
-                            <h3 class="text-white font-normal text-xl max-[480px]:text-lg">Open by Design</h3>
+                            <h3 class="text-white font-normal text-xl max-[480px]:text-lg">Open by
+                                Design</h3>
                             <p class="text-[#8FA9B8] font-light text-base leading-[1.3] max-w-[34ch]">
-                                Datum is designed to fit into existing workflows. Our solutions are interoperable by
+                                Datum is designed to fit into existing workflows. Our solutions are
+                                interoperable by
                                 default and never force a single pipeline or vendor lock-in.
                             </p>
                         </div> <!-- Card 2 -->
                         <div data-card-hover
                             class="border border-[#2F424B] -ml-[1px] -mt-[1px] h-[400px] p-6 flex flex-col gap-4 transition-colors max-[480px]:p-4">
-                            <h3 class="text-white font-normal text-xl max-[480px]:text-lg">AI as a Simplifier, Not a
+                            <h3 class="text-white font-normal text-xl max-[480px]:text-lg">AI as a
+                                Simplifier, Not a
                                 Feature</h3>
                             <p class="text-[#8FA9B8] font-light text-base leading-[1.3] max-w-[34ch]">
-                                We use AI to make complex spaces and processes easier to understand — not to add another
+                                We use AI to make complex spaces and processes easier to understand —
+                                not to add
+                                another
                                 layer of complexity.
                             </p>
                         </div> <!-- Card 3 -->
                         <div data-card-hover
                             class="border border-[#2F424B] -ml-[1px] -mt-[1px] h-[400px] p-6 flex flex-col gap-4 transition-colors max-[480px]:p-4">
-                            <h3 class="text-white font-normal text-xl max-[480px]:text-lg">A team of professionals</h3>
+                            <h3 class="text-white font-normal text-xl max-[480px]:text-lg">A team of
+                                professionals
+                            </h3>
                             <p class="text-[#8FA9B8] font-light text-base leading-[1.3] max-w-[34ch]">
-                                We have top engineers with deep experience in 3D engines, AI agents, CV, and building
+                                We have top engineers with deep experience in 3D engines, AI agents, CV,
+                                and
+                                building
                                 real client products.
                             </p>
                         </div> <!-- Card 4 -->
                         <div data-card-hover
                             class="border border-[#2F424B] -ml-[1px] -mt-[1px] h-[400px] p-6 flex flex-col gap-4 transition-colors max-[480px]:p-4">
-                            <h3 class="text-white font-normal text-xl max-[480px]:text-lg">Built, Not Assembled</h3>
+                            <h3 class="text-white font-normal text-xl max-[480px]:text-lg">Built, Not
+                                Assembled</h3>
                             <p class="text-[#8FA9B8] font-light text-base leading-[1.3] max-w-[34ch]">
-                                We build and own the core components of our stack to ensure reliability, performance,
-                                and long-term control. This allows us to deliver consistent experiences in any
+                                We build and own the core components of our stack to ensure reliability,
+                                performance,
+                                and long-term control. This allows us to deliver consistent experiences
+                                in any
                                 conditions.
                             </p>
                         </div>
                     </div>
                 </div> <!-- Right Border Only -->
-                <div class="w-[25px] flex-shrink-0 border-l border-[#2F424B] max-[768px]:w-4 max-[480px]:w-3"></div>
+                <div class="w-[25px] flex-shrink-0 border-l border-[#2F424B] max-[768px]:w-4 max-[480px]:w-3">
+                </div>
             </div>
         </section>
         <div class="w-full border-t border-[#2F424B]"></div>
         <section id="contact" class="bg-[#101619]">
             <div class="flex items-stretch w-full"> <!-- Left Border Only -->
-                <div class="w-[25px] flex-shrink-0 border-r border-[#2F424B] max-[768px]:w-4 max-[480px]:w-3"></div>
+                <div class="w-[25px] flex-shrink-0 border-r border-[#2F424B] max-[768px]:w-4 max-[480px]:w-3">
+                </div>
                 <!-- Content -->
                 <div
                     class="flex-1 flex flex-col gap-6 pl-6 pr-6 py-6 pb-10 max-[480px]:pl-4 max-[480px]:pr-4 max-[480px]:py-4 max-[480px]:pb-8">
                     <!-- Section Header -->
-                    <div class="flex items-center gap-2"> <span class="text-nav-link text-brand-yellow">06</span> <span
-                            class="text-nav-link text-[#506D7E]">contact us</span> </div>
+                    <div class="flex items-center gap-2"> <span class="text-nav-link text-brand-yellow">07</span>
+                        <span class="text-nav-link text-[#506D7E]">contact us</span>
+                    </div>
                     <div class="grid grid-cols-2 gap-16 max-[768px]:grid-cols-1 max-[768px]:gap-8">
                         <div>
                             <h2
@@ -805,7 +1076,8 @@
                         </form>
                     </div>
                 </div> <!-- Right Border Only -->
-                <div class="w-[25px] flex-shrink-0 border-l border-[#2F424B] max-[768px]:w-4 max-[480px]:w-3"></div>
+                <div class="w-[25px] flex-shrink-0 border-l border-[#2F424B] max-[768px]:w-4 max-[480px]:w-3">
+                </div>
             </div>
         </section>
         <div class="w-full border-t border-[#2F424B]"></div>
@@ -1006,6 +1278,107 @@
         });
     });
 </script>
+
+<script>
+    (function () {
+        function easeInOut(t) { return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t; }
+        function clamp(v, lo, hi) { return Math.min(Math.max(v, lo), hi); }
+
+        var CAPTIONS = [
+            'Follow the epic journey of <span style="color:#FFFFFF">Ramesses\u00A0II</span>, whose <span style="color:#FFFFFF">colossal statue</span> stands at the Grand Egyptian Museum in Giza.',
+            '<span style="color:#FFFFFF">2M</span> Egyptian artefacts are held worldwide. We map the <span style="color:#FFFFFF">top 50 museums</span> and <span style="color:#FFFFFF">how they got them</span>.',
+            'The history of <span style="color:#FFFFFF">annual pilgrimage to Mecca</span>, one of the most <span style="color:#FFFFFF">powerful displays of faith</span> on Earth.'
+        ];
+
+        function init() {
+            var scrollEl = document.getElementById('storytelling-scroll');
+            var cards = Array.from(document.querySelectorAll('.story-card'));
+            var captionEl = document.getElementById('card-caption');
+            if (!scrollEl || cards.length === 0) return;
+
+            var N = cards.length; // 3 cards
+            var activeIndex = 0;
+            var fadePending = false;
+
+            /* Switch caption with a crossfade when the active card changes */
+            function setCaption(idx) {
+                if (idx === activeIndex || fadePending) return;
+                fadePending = true;
+                activeIndex = idx;
+                if (!captionEl) return;
+                captionEl.style.opacity = '0';
+                setTimeout(function () {
+                    captionEl.innerHTML = CAPTIONS[idx];
+                    captionEl.style.opacity = '1';
+                    fadePending = false;
+                }, 260);
+            }
+
+            function onScroll() {
+                var isMobile = window.innerWidth <= 1024;
+                var cardsContainer = document.getElementById('cards-display');
+                if (!cardsContainer) return;
+
+                var sectionH = scrollEl.offsetHeight;
+                var rect = scrollEl.getBoundingClientRect();
+                var cardsRect = cardsContainer.getBoundingClientRect();
+
+                var scrolled = 0;
+                var SEG = 1;
+
+                if (isMobile) {
+                    var scrollSpace = cardsContainer.offsetHeight - window.innerHeight;
+                    if (scrollSpace <= 0) scrollSpace = 1;
+                    scrolled = clamp(-cardsRect.top, 0, scrollSpace);
+                    // Map the N-1 animations strictly to the scrollSpace to eliminate dead zones
+                    SEG = scrollSpace / (N - 1);
+                } else {
+                    scrolled = clamp(-rect.top * 1.8, 0, sectionH);
+                    SEG = sectionH / N;
+                }
+
+                /* Determine which card is "on top" */
+                var topCard = 0;
+                for (var k = 1; k < N; k++) {
+                    var segStart = (k - 1) * SEG;
+                    if (scrolled >= segStart + SEG * 0.5) {
+                        topCard = k;
+                    }
+                }
+                setCaption(topCard);
+
+                cards.forEach(function (card, i) {
+                    if (i === 0) {
+                        var progressMax = isMobile ? ((N - 1) * SEG) : ((N - 1) * SEG * 1.5);
+                        var totalProgress = clamp(scrolled / progressMax, 0, 1);
+                        var scale = (1 - totalProgress * 0.06).toFixed(4);
+                        card.style.transform = 'translateX(-50%) scale(' + scale + ')';
+                        card.style.opacity = '1';
+                        return;
+                    }
+
+                    var segStart = (i - 1) * SEG;
+                    var p = clamp((scrolled - segStart) / SEG, 0, 1);
+                    var ease = easeInOut(p);
+                    var vyh = (1 - ease) * 110;
+                    card.style.transform = 'translateX(-50%) translateY(' + vyh.toFixed(2) + 'vh)';
+
+                    var op = clamp((scrolled - segStart) / (SEG * 0.05), 0, 1);
+                    card.style.opacity = op.toFixed(3);
+                });
+            }
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('resize', onScroll);
+            onScroll();
+        }
+
+        document.readyState === 'loading'
+            ? document.addEventListener('DOMContentLoaded', init)
+            : init();
+    })();
+</script>
+
 <script
     type="module">document.addEventListener("DOMContentLoaded", () => { const s = document.querySelectorAll(".industry-tab"), d = document.querySelectorAll(".industry-content"); function a(e) { s.forEach(t => { t.getAttribute("data-tab") === e ? (t.classList.remove("text-[#506D7E]"), t.classList.add("text-brand-yellow")) : (t.classList.remove("text-brand-yellow"), t.classList.add("text-[#506D7E]")) }), d.forEach(t => { t.getAttribute("data-content") === e ? t.classList.remove("hidden") : t.classList.add("hidden") }) } s.forEach(e => { e.addEventListener("click", () => { const t = e.getAttribute("data-tab"); t && a(t) }) }), a("education") });</script>
 <script type="module" src="/_astro/index.astro_astro_type_script_index_2_lang.BsXAceNk.js"></script>
