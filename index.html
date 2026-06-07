@@ -1189,13 +1189,38 @@
 
         // Spam keywords (case-insensitive)
         const SPAM_KEYWORDS = [
-            "sex", "porn", "xxx", "drug", "casino", "viagra", "cialis",
-            "crypto", "bitcoin", "nft", "loan", "dating", "escort",
-            "nude", "naked", "adult",
-            "weed", "cocaine", "heroin", "pills", "meth", "mdma", "ketamine",
-            "fentanyl", "opioid", "narcotic", "amphetamine",
+            // Sex / adult
+            "sex", "porn", "xxx", "nude", "naked", "adult", "hookup",
+            "singles", "meet girls", "hot women", "companionship", "escort",
+            "dating",
+            // Drugs
+            "drug", "weed", "cocaine", "heroin", "meth", "mdma", "ketamine",
+            "fentanyl", "opioid", "narcotic", "amphetamine", "steroid",
+            "anabolic", "testosterone",
+            // Pharma spam
+            "viagra", "cialis", "weight loss", "diet pills", "enlargement",
+            // Casino / gambling
+            "casino", "gambling", "poker", "slots", "betting", "bookmaker",
+            // Crypto / financial scam
+            "crypto", "bitcoin", "nft", "forex", "trading signals",
+            "binary options", "ponzi", "pyramid", "passive income",
+            "make money", "earn $", "investment opportunity",
+            // Lottery / prizes
+            "you've won", "you have won", "lottery", "prize", "giveaway",
+            "free gift", "claim your", "winner",
+            // Hacking / dark web
+            "hack", "hacker", "phishing", "malware", "ransomware",
+            "darkweb", "dark web", "exploit",
+            // SEO spam
+            "backlinks", "rank #1", "google ranking", "seo service",
+            "buy links", "traffic boost",
+            // Cheap goods
+            "wholesale", "replica", "discount 90", "lowest price guaranteed",
+            // Russian equivalents
             "наркот", "секс", "порно", "казино", "марихуан", "кокаин",
-            "героин", "таблетк", "метамфетамин", "фентанил"
+            "героин", "таблетк", "метамфетамин", "фентанил", "взлом",
+            "хакер", "ставки", "букмекер", "заработ", "инвестиц",
+            "пассивный доход", "выигрыш", "лотере", "приз"
         ];
 
         // URL patterns that should never appear in name/company/title fields
