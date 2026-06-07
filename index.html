@@ -1191,12 +1191,23 @@
         const SPAM_KEYWORDS = [
             "sex", "porn", "xxx", "drug", "casino", "viagra", "cialis",
             "crypto", "bitcoin", "nft", "loan", "dating", "escort",
-            "nude", "naked", "adult", "наркот", "секс", "порно", "казино"
+            "nude", "naked", "adult",
+            "weed", "cocaine", "heroin", "pills", "meth", "mdma", "ketamine",
+            "fentanyl", "opioid", "narcotic", "amphetamine",
+            "наркот", "секс", "порно", "казино", "марихуан", "кокаин",
+            "героин", "таблетк", "метамфетамин", "фентанил"
         ];
+
+        // URL patterns that should never appear in name/company/title fields
+        const URL_PATTERN = /https?:\/\/|www\.|bit\.ly|t\.me|tinyurl|\.com\/|\.ru\/|\.net\/|\.org\//i;
 
         function containsSpam(text) {
             const lower = text.toLowerCase();
             return SPAM_KEYWORDS.some(kw => lower.includes(kw));
+        }
+
+        function containsUrl(text) {
+            return URL_PATTERN.test(text);
         }
 
         // Get form elements
@@ -1274,11 +1285,11 @@
                 return;
             }
 
-            // Keyword spam check on all text fields
+            // Keyword and URL spam check on all text fields
             const textFields = form.querySelectorAll('input[type="text"]');
             let spamDetected = false;
             textFields.forEach(field => {
-                if (field.id !== "hp-website" && containsSpam(field.value)) {
+                if (field.id !== "hp-website" && (containsSpam(field.value) || containsUrl(field.value))) {
                     spamDetected = true;
                 }
             });
