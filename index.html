@@ -1020,6 +1020,10 @@
                             method="POST" target="hidden_iframe" class="flex flex-col gap-4 max-[480px]:gap-3">
                             <!-- Hidden iframe for Google Forms submission -->
                             <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+                            <!-- Honeypot: invisible to humans, bots fill it -->
+                            <div style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
+                                <input type="text" id="hp-website" name="website" tabindex="-1" autocomplete="off" value="">
+                            </div>
                             <div class="relative"> <input type="text" id="name" name="entry.1464780233" placeholder=" "
                                     required
                                     class="peer w-full bg-[#172228] border border-[#2F424B] rounded text-white px-5 pt-6 pb-2 text-sm font-[family-name:var(--font-family-space-mono)] focus:outline-none focus:ring-1 focus:ring-brand-yellow placeholder-transparent transition-all">
@@ -1180,6 +1184,21 @@
             return /^\d{7,20}$/.test(cleaned);
         }
 
+        // Spam protection: record when form became visible
+        const formLoadTime = Date.now();
+
+        // Spam keywords (case-insensitive)
+        const SPAM_KEYWORDS = [
+            "sex", "porn", "xxx", "drug", "casino", "viagra", "cialis",
+            "crypto", "bitcoin", "nft", "loan", "dating", "escort",
+            "nude", "naked", "adult", "наркот", "секс", "порно", "казино"
+        ];
+
+        function containsSpam(text) {
+            const lower = text.toLowerCase();
+            return SPAM_KEYWORDS.some(kw => lower.includes(kw));
+        }
+
         // Get form elements
         const form = document.getElementById("contact-form");
         const submitBtn = document.getElementById("submit-btn");
@@ -1187,6 +1206,7 @@
         const errorMsg = document.getElementById("form-error");
         const emailField = form?.querySelector('input[name="entry.1857307596"]');
         const phoneField = form?.querySelector('input[name="entry.1435451472"]');
+        const honeypotField = document.getElementById("hp-website");
 
         let emailTimeout = null;
         let phoneTimeout = null;
@@ -1239,6 +1259,36 @@
             // Clear any pending timeouts
             clearTimeout(emailTimeout);
             clearTimeout(phoneTimeout);
+
+            // Honeypot check: if filled, silently pretend success
+            if (honeypotField && honeypotField.value.trim() !== "") {
+                successMsg?.classList.remove("hidden");
+                form.reset();
+                return;
+            }
+
+            // Time check: < 3 seconds = likely bot
+            if (Date.now() - formLoadTime < 3000) {
+                successMsg?.classList.remove("hidden");
+                form.reset();
+                return;
+            }
+
+            // Keyword spam check on all text fields
+            const textFields = form.querySelectorAll('input[type="text"]');
+            let spamDetected = false;
+            textFields.forEach(field => {
+                if (field.id !== "hp-website" && containsSpam(field.value)) {
+                    spamDetected = true;
+                }
+            });
+            if (spamDetected) {
+                if (errorMsg) {
+                    errorMsg.textContent = "Your message contains prohibited content and could not be submitted.";
+                    errorMsg.classList.remove("hidden");
+                }
+                return;
+            }
 
             const emailVal = emailField?.value.trim();
             const phoneVal = phoneField?.value.trim();
