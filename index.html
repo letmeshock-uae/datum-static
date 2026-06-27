@@ -1226,6 +1226,26 @@
         // URL patterns that should never appear in name/company/title fields
         const URL_PATTERN = /https?:\/\/|www\.|bit\.ly|t\.me|tinyurl|\.com\/|\.ru\/|\.net\/|\.org\//i;
 
+        // Known spam/disposable email domains
+        const SPAM_EMAIL_DOMAINS = [
+            "web-library.net", "mailinator.com", "guerrillamail.com", "trashmail.com",
+            "tempmail.com", "10minutemail.com", "throwam.com", "yopmail.com",
+            "sharklasers.com", "guerrillamailblock.com", "grr.la", "guerrillamail.info",
+            "spam4.me", "maildrop.cc", "dispostable.com", "mailnull.com",
+            "spamgourmet.com", "trashmail.me", "trashmail.net", "fakeinbox.com",
+            "mailnesia.com", "discard.email", "spamfree24.org", "spamfree.eu",
+            "jetable.fr.nf", "nwldx.com", "spamgob.com", "tempr.email",
+            "spamcorptastic.com", "mail-temporaire.fr", "getairmail.com",
+            "filzmail.com", "spamherelots.com", "binkmail.com", "safetymail.info",
+            "spamthisplease.com", "spam.la", "emailsensei.com", "emailwarden.com",
+            "no-spam.ws", "rmqkr.net", "spamfree24.de", "antispam24.de",
+            "byom.de", "trash-mail.at", "spambob.net", "spambob.org",
+            "spambob.com", "spamhole.com", "spamify.com"
+        ];
+
+        // Digits in name/company/title fields are a strong spam signal
+        const DIGITS_PATTERN = /\d/;
+
         function containsSpam(text) {
             const lower = text.toLowerCase();
             return SPAM_KEYWORDS.some(kw => lower.includes(kw));
@@ -1233,6 +1253,17 @@
 
         function containsUrl(text) {
             return URL_PATTERN.test(text);
+        }
+
+        function hasDigits(text) {
+            return DIGITS_PATTERN.test(text);
+        }
+
+        function isSpamEmailDomain(email) {
+            const parts = email.toLowerCase().split("@");
+            if (parts.length !== 2) return false;
+            const domain = parts[1].trim();
+            return SPAM_EMAIL_DOMAINS.includes(domain);
         }
 
         // Get form elements
@@ -1318,6 +1349,25 @@
                     spamDetected = true;
                 }
             });
+
+            // Digits in name / company / title = spam signal
+            const nameField = form.querySelector('input[name="entry.1464780233"]');
+            const companyField = form.querySelector('input[name="entry.1324593589"]');
+            const titleField = form.querySelector('input[name="entry.2096727810"]');
+            if (
+                (nameField && hasDigits(nameField.value)) ||
+                (companyField && hasDigits(companyField.value)) ||
+                (titleField && hasDigits(titleField.value))
+            ) {
+                spamDetected = true;
+            }
+
+            // Spam/disposable email domain check
+            const emailVal2 = emailField?.value.trim();
+            if (emailVal2 && isSpamEmailDomain(emailVal2)) {
+                spamDetected = true;
+            }
+
             if (spamDetected) {
                 if (errorMsg) {
                     errorMsg.textContent = "Your message contains prohibited content and could not be submitted.";
